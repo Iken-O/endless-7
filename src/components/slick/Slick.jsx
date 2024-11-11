@@ -28,7 +28,7 @@ const loadYouTubeAPI = () => {
     });
 };
 //YouTubePlayerの作成
-const YouTubePlayer = ({ videoId, isVisible }) => {
+const YouTubePlayer = ({ videoId, isVisible, start, end }) => {
     const playerRef = useRef(null);
     const containerRef = useRef(null);
 
@@ -58,7 +58,9 @@ const YouTubePlayer = ({ videoId, isVisible }) => {
                         controls: 1,
                         modestbranding: 1,
                         rel: 0,
-                        enablejsapi: 1
+                        enablejsapi: 1,
+                        start: start, // 開始時間の設定
+                        end: end // 終了時間の設定
                     },
                     events: {
                         onReady: (event) => {
@@ -87,13 +89,13 @@ const YouTubePlayer = ({ videoId, isVisible }) => {
                 playerRef.current = null;
             }
         };
-    }, [videoId, isVisible]);
+    }, [videoId, isVisible, start, end]);
 
     return <div ref={containerRef} className="youtubePlayer" />;
 };
 
 export default function Slick() {
-    const [activeSlides, setActiveSlides] = useState(new Set([0, 1, 2]));
+    const [activeSlides, setActiveSlides] = useState(new Set([0, 1]));
     const [isAPIReady, setIsAPIReady] = useState(false);
 
     useEffect(() => {
@@ -105,13 +107,13 @@ export default function Slick() {
 
     const videos = [
         { id: "VxMbHYYszgM", title: "【朝活】おはすず 11月3日（月）【七瀬すず菜/にじさんじ】", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04" , start: "3318", end: "3520" },
-        { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04" , start: "3318", end: "3520" },
-        { id: "kTnxwuT6Z-g", title: "Slide 4", date: "2024/11/04" , start: "3318", end: "3520" },
-        { id: "ab1hQ1ekA8Y", title: "Slide 5", date: "2024/11/04" , start: "3318", end: "3520" },
-        { id: "B6Bs7ExEew0", title: "Slide 6", date: "2024/11/04" , start: "3318", end: "3520" },
-        { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04" , start: "3318", end: "3520" },
-        { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04" , start: "3318", end: "3520" },
+        { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "kTnxwuT6Z-g", title: "Slide 4", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "ab1hQ1ekA8Y", title: "Slide 5", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "B6Bs7ExEew0", title: "Slide 6", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04", start: "3318", end: "3520" },
     ];
 
     const handleSlideChange = (swiper) => {
@@ -158,6 +160,8 @@ export default function Slick() {
                             <YouTubePlayer
                                 videoId={video.id}
                                 isVisible={activeSlides.has(index)}
+                                start={video.start}
+                                end={video.end}
                             />
                             <div className='youtubeDescription'>
                                 <div className='youtubeTitleWrapper'>
