@@ -43,42 +43,47 @@
     width: 32px;
     margin: 2px;
 }
-.shareSquareButton a{
+
+.shareSquareButton a {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.shareSquareButtonX{
+
+.shareSquareButtonX {
     border: #000 solid 1px;
     background-color: #000;
     margin-right: 0px;
 }
-.shareSquareButtonYoutube{
+
+.shareSquareButtonYoutube {
     border: #FF0000 solid 1px;
 }
 
-.arrowButtonsWrapper {
-    z-index: 100;
+/* .arrowButtonsWrapper {
     position: absolute;
     width: 100%;
     display: flex;
     justify-content: center;
     top: 50%;
     transform: translateY(-75px);
-}
+} */
 
 .arrowButtonWrapperLeft {
-    margin-right: 325px;
+    left: 15%;
+    top: 25%;
 }
 
 .arrowButtonWrapperRight {
-    margin-left: 325px;
+    right: 15%;
+    top: 25%;
 }
 
 .arrowButtonWrapper {
-    padding: 0 60px;
+    position: absolute;
+    /* padding: 0 60px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,6 +91,7 @@
 }
 
 .arrow {
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,6 +104,7 @@
     box-shadow: 4px 4px 0px 0px rgba(161, 75, 74, 1);
     transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
+
 .arrow:active {
     transform: translateY(4px);
     /* transform: translateX(4px); */
@@ -113,15 +120,18 @@
     font-weight: 800;
     font-size: 1.25em;
 }
-.youtubeTitleWrapper{
+
+.youtubeTitleWrapper {
     font-weight: 800;
     display: flex;
     align-items: flex-end
 }
-.youtubeTitle{
+
+.youtubeTitle {
     font-size: 0.95em;
 }
-.youtubeDate{
+
+.youtubeDate {
     font-size: 0.6em;
     color: #999;
     margin-bottom: 2px;
