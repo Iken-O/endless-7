@@ -1,0 +1,12 @@
+.topWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 45px 0;
+}
+.img{
+    background-color: #EB6968;
+    height: 140px;
+    width: 430px;
+    color: #FFF;
+}

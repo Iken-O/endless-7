@@ -1,0 +1,128 @@
+:root {
+    --swiper-navigation-size: 44px;
+    --swiper-navigation-sides-offset: 200px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.youtubeSliderWrapper {
+    border: 5px solid #EB6968;
+}
+
+.youtubePlayer {
+    min-height: 360px;
+    min-width: 640px;
+    background-color: black;
+}
+
+.youtubeDescription {
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ShareSquareButtons {
+    display: flex;
+}
+
+.shareSquareButton {
+    background-color: #FFF;
+    height: 32px;
+    width: 32px;
+    margin: 2px;
+}
+.shareSquareButton a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shareSquareButtonX{
+    border: #000 solid 1px;
+    background-color: #000;
+    margin-right: 0px;
+}
+.shareSquareButtonYoutube{
+    border: #FF0000 solid 1px;
+}
+
+.arrowButtonsWrapper {
+    z-index: 100;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-75px);
+}
+
+.arrowButtonWrapperLeft {
+    margin-right: 325px;
+}
+
+.arrowButtonWrapperRight {
+    margin-left: 325px;
+}
+
+.arrowButtonWrapper {
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    border: #EB6968 solid 4px;
+    border-radius: 7px;
+    background-color: #FFF;
+    box-shadow: 4px 4px 0px 0px rgba(161, 75, 74, 1);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.arrow:active {
+    transform: translateY(4px);
+    /* transform: translateX(4px); */
+    box-shadow: 0px 0px 0px 0px rgba(161, 75, 74, 1);
+}
+
+.swiper-container {
+    position: relative;
+}
+
+.arrowButtonText {
+    margin-bottom: 20px;
+    font-weight: 800;
+    font-size: 1.25em;
+}
+.youtubeTitleWrapper{
+    font-weight: 800;
+    display: flex;
+    align-items: flex-end
+}
+.youtubeTitle{
+    font-size: 0.95em;
+}
+.youtubeDate{
+    font-size: 0.6em;
+    color: #999;
+    margin-bottom: 2px;
+}
