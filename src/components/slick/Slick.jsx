@@ -28,7 +28,7 @@ const loadYouTubeAPI = () => {
     });
 };
 //YouTubePlayerの作成
-const YouTubePlayer = ({ videoId, isVisible, start, end }) => {
+const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd }) => {
     const playerRef = useRef(null);
     const containerRef = useRef(null);
 
@@ -54,21 +54,26 @@ const YouTubePlayer = ({ videoId, isVisible, start, end }) => {
                     width: '100%',
                     height: '100%',
                     playerVars: {
-                        autoplay: 0,
+                        autoplay: 0, // 自動再生を有効化
                         controls: 1,
                         modestbranding: 1,
                         rel: 0,
                         enablejsapi: 1,
-                        start: start, // 開始時間の設定
-                        end: end // 終了時間の設定
+                        start: start,
+                        end: end
                     },
                     events: {
-                        onReady: (event) => {
-                            console.log('Player ready', videoId);
-                        },
+                        // onReady: (event) => {
+                        //     console.log('Player ready', videoId);
+                        //     // 読み込み完了時に再生開始
+                        //     event.target.playVideo();
+                        // },
                         onStateChange: (event) => {
-                            // 必要に応じて状態変更のハンドリング
-                            console.log('Player state changed', event.data);
+                            // 動画が終了したとき（YT.PlayerState.ENDED = 0）
+                            if (event.data === 0) {
+                                console.log('Video ended');
+                                onVideoEnd();
+                            }
                         },
                         onError: (event) => {
                             console.error('Player error', event.data);
@@ -82,48 +87,51 @@ const YouTubePlayer = ({ videoId, isVisible, start, end }) => {
 
         initPlayer();
 
-        // クリーンアップ
         return () => {
             if (playerRef.current) {
                 playerRef.current.destroy();
                 playerRef.current = null;
             }
         };
-    }, [videoId, isVisible, start, end]);
+    }, [videoId, isVisible, start, end, onVideoEnd]);
 
     return <div ref={containerRef} className="youtubePlayer" />;
 };
 
 export default function Slick() {
-    const [activeSlides, setActiveSlides] = useState(new Set([0, 1]));
+    const [activeSlides, setActiveSlides] = useState(new Set([0]));
     const [isAPIReady, setIsAPIReady] = useState(false);
+    const swiperRef = useRef(null);
 
     useEffect(() => {
-        // コンポーネントマウント時にYouTube APIを読み込む
         loadYouTubeAPI().then(() => {
             setIsAPIReady(true);
         });
     }, []);
 
     const videos = [
-        { id: "VxMbHYYszgM", title: "【朝活】おはすず 11月3日（月）【七瀬すず菜/にじさんじ】", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "kTnxwuT6Z-g", title: "Slide 4", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "ab1hQ1ekA8Y", title: "Slide 5", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "B6Bs7ExEew0", title: "Slide 6", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04", start: "3318", end: "3520" },
-        { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04", start: "3318", end: "3520" },
+        { id: "VxMbHYYszgM", title: "【朝活】おはすず 11月3日（月）【七瀬すず菜/にじさんじ】", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "kTnxwuT6Z-g", title: "Slide 4", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "ab1hQ1ekA8Y", title: "Slide 5", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "B6Bs7ExEew0", title: "Slide 6", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04", start: "3318", end: "3340" },
     ];
 
     const handleSlideChange = (swiper) => {
         const { activeIndex } = swiper;
-        const newActiveSlides = new Set([
-            activeIndex - 1,
-            activeIndex,
-            activeIndex + 1
-        ]);
+        const newActiveSlides = new Set([activeIndex]);
         setActiveSlides(newActiveSlides);
+    };
+
+    const handleVideoEnd = () => {
+        console.log("videoEnd")
+        // 動画終了時に次のスライドに移動
+        if (swiperRef.current) {
+            swiperRef.current.slideNext();
+        }
     };
 
     if (!isAPIReady) {
@@ -132,7 +140,6 @@ export default function Slick() {
 
     return (
         <div className="swiper-container">
-            {/* <div className="arrowButtonsWrapper"> */}
             <div className='arrowButtonWrapper arrowButtonWrapperLeft'>
                 <p className='arrowButtonText'>まえの話</p>
                 <button className="arrow-left arrow"><img src="/assets/leftArrow.svg" alt="" /></button>
@@ -140,7 +147,6 @@ export default function Slick() {
             <div className='arrowButtonWrapper arrowButtonWrapperRight'>
                 <p className='arrowButtonText'>つぎの話</p>
                 <button className="arrow-right arrow"><img src="/assets/rightArrow.svg" alt="" /></button>
-                {/* </div> */}
             </div>
             <Swiper
                 slidesPerView={1.5}
@@ -153,15 +159,19 @@ export default function Slick() {
                 modules={[Navigation]}
                 className="mySwiper"
                 onSlideChange={handleSlideChange}
+                onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                }}
             >
                 {videos.map((video, index) => (
-                    <SwiperSlide>
+                    <SwiperSlide key={video.id}>
                         <div className="youtubeSliderWrapper">
                             <YouTubePlayer
                                 videoId={video.id}
                                 isVisible={activeSlides.has(index)}
                                 start={video.start}
                                 end={video.end}
+                                onVideoEnd={handleVideoEnd}
                             />
                             <div className='youtubeDescription'>
                                 <div className='youtubeTitleWrapper'>
@@ -169,8 +179,16 @@ export default function Slick() {
                                     <p className="youtubeDate">{video.date}</p>
                                 </div>
                                 <div className='ShareSquareButtons'>
-                                    <div className="shareSquareButton shareSquareButtonX"><a href="https://x.com/suzuna_nanase"><img src="/assets/xIcon.png" height={22} width={21} alt="" /></a></div>
-                                    <div className='shareSquareButton shareSquareButtonYoutube'><a href="https://www.youtube.com/@NanaseSuzuna"><img src="/assets/ytIcon.png" height={14} width={20} alt="" /></a></div>
+                                    <div className="shareSquareButton shareSquareButtonX">
+                                        <a href="https://x.com/suzuna_nanase">
+                                            <img src="/assets/xIcon.png" height={22} width={21} alt="" />
+                                        </a>
+                                    </div>
+                                    <div className='shareSquareButton shareSquareButtonYoutube'>
+                                        <a href="https://www.youtube.com/@NanaseSuzuna">
+                                            <img src="/assets/ytIcon.png" height={14} width={20} alt="" />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
