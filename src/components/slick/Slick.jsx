@@ -28,21 +28,22 @@ const loadYouTubeAPI = () => {
     });
 };
 //YouTubePlayerの作成
-const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd }) => {
+const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) => {
     const playerRef = useRef(null);
     const containerRef = useRef(null);
+
+    // サムネイルのURLを生成
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
 
     useEffect(() => {
         if (!isVisible) {
             if (playerRef.current) {
-                // プレーヤーのクリーンアップ
                 playerRef.current.destroy();
                 playerRef.current = null;
             }
             return;
         }
 
-        // プレーヤーの初期化
         const initPlayer = async () => {
             try {
                 const YT = await loadYouTubeAPI();
@@ -54,7 +55,7 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd }) => {
                     width: '100%',
                     height: '100%',
                     playerVars: {
-                        autoplay: 0, // 自動再生を有効化
+                        autoplay: 1,
                         controls: 1,
                         modestbranding: 1,
                         rel: 0,
@@ -63,13 +64,12 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd }) => {
                         end: end
                     },
                     events: {
-                        // onReady: (event) => {
-                        //     console.log('Player ready', videoId);
-                        //     // 読み込み完了時に再生開始
-                        //     event.target.playVideo();
-                        // },
+                        onReady: (event) => {
+                            console.log('Player ready', videoId);
+                            // 読み込み完了時に再生開始
+                            event.target.playVideo();
+                        },
                         onStateChange: (event) => {
-                            // 動画が終了したとき（YT.PlayerState.ENDED = 0）
                             if (event.data === 0) {
                                 console.log('Video ended');
                                 onVideoEnd();
@@ -95,11 +95,22 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd }) => {
         };
     }, [videoId, isVisible, start, end, onVideoEnd]);
 
-    return <div ref={containerRef} className="youtubePlayer" />;
+    return (
+        <div
+            ref={containerRef}
+            className="youtubePlayer"
+            style={{
+                backgroundImage: isReady ? `url(${thumbnailUrl})` : 'none',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}
+        />
+    );
 };
 
 export default function Slick() {
     const [activeSlides, setActiveSlides] = useState(new Set([0]));
+    const [readySlides, setReadySlides] = useState(new Set([0, 1]))
     const [isAPIReady, setIsAPIReady] = useState(false);
     const swiperRef = useRef(null);
 
@@ -123,6 +134,12 @@ export default function Slick() {
     const handleSlideChange = (swiper) => {
         const { activeIndex } = swiper;
         const newActiveSlides = new Set([activeIndex]);
+        const newReadySlides = new Set([
+            activeIndex - 1,
+            activeIndex,
+            activeIndex + 1
+        ]);
+        setReadySlides(newReadySlides)
         setActiveSlides(newActiveSlides);
     };
 
@@ -169,6 +186,7 @@ export default function Slick() {
                             <YouTubePlayer
                                 videoId={video.id}
                                 isVisible={activeSlides.has(index)}
+                                isReady={readySlides.has(index)}
                                 start={video.start}
                                 end={video.end}
                                 onVideoEnd={handleVideoEnd}
