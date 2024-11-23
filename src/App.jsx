@@ -20,7 +20,7 @@ export default function App() {
       <div className="frame">
         <Top startTime={startTime} isTimerStarted={isTimerStarted} />
         <Main handleArrowClick={handleArrowClick}/>
-        <Button />
+        <Button startTime={startTime} isTimerStarted={isTimerStarted} />
         <Credit />
       </div>
     </>
