@@ -5,6 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../slick/Slick.css';
 import { Navigation } from 'swiper/modules';
+import { v4 as uuidv4 } from 'uuid';
 
 //Youtube Frame APIの読み込み
 const loadYouTubeAPI = () => {
@@ -14,12 +15,10 @@ const loadYouTubeAPI = () => {
             resolve(window.YT);
             return;
         }
-
         // コールバック関数の設定
         window.onYouTubeIframeAPIReady = () => {
             resolve(window.YT);
         };
-
         // APIスクリプトの読み込み
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
@@ -120,7 +119,20 @@ export default function Slick() {
         });
     }, []);
 
-    const videos = [
+    // 初期動画リストをstateとして管理
+    const [videos, setVideos] = useState([
+        { id: "VxMbHYYszgM", title: "【朝活】おはすず 11月3日（月）【七瀬すず菜/にじさんじ】", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "kTnxwuT6Z-g", title: "Slide 4", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "ab1hQ1ekA8Y", title: "Slide 5", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "B6Bs7ExEew0", title: "Slide 6", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04", start: "3318", end: "3340" },
+        { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04", start: "3318", end: "3340" },
+    ]);
+
+    // 基準となる動画リスト（新しい動画を追加する際のソースとして使用）
+    const baseVideos = [
         { id: "VxMbHYYszgM", title: "【朝活】おはすず 11月3日（月）【七瀬すず菜/にじさんじ】", date: "2024/11/04", start: "3318", end: "3340" },
         { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04", start: "3318", end: "3340" },
         { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04", start: "3318", end: "3340" },
@@ -141,6 +153,15 @@ export default function Slick() {
         ]);
         setReadySlides(newReadySlides)
         setActiveSlides(newActiveSlides);
+
+        // 最後から2番目のスライドに到達したら新しい動画を追加
+        if (activeIndex >= videos.length - 2) {
+            const newVideos = [...baseVideos].map(video => ({
+                ...video,
+                uniqueKey: uuidv4()
+            }));
+            setVideos(prevVideos => [...prevVideos, ...newVideos]);
+        }
     };
 
     const handleVideoEnd = () => {
@@ -181,7 +202,7 @@ export default function Slick() {
                 }}
             >
                 {videos.map((video, index) => (
-                    <SwiperSlide key={video.id}>
+                    <SwiperSlide key={video.uniqueKey}>
                         <div className="youtubeSliderWrapper">
                             <YouTubePlayer
                                 videoId={video.id}
