@@ -107,7 +107,7 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
     );
 };
 
-export default function Slick() {
+export default function Slick({ handleArrowClick }) {
     const [activeSlides, setActiveSlides] = useState(new Set([0]));
     const [readySlides, setReadySlides] = useState(new Set([0, 1]))
     const [isAPIReady, setIsAPIReady] = useState(false);
@@ -157,6 +157,7 @@ export default function Slick() {
             activeIndex,
             activeIndex + 1
         ]);
+        handleArrowClick();
         setReadySlides(newReadySlides)
         setActiveSlides(newActiveSlides);
 
