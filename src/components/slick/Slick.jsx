@@ -107,6 +107,30 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
     );
 };
 
+// 説明用スライドのコンポーネント
+const IntroSlide = () => (
+    <div className="youtubeSliderWrapper">
+        <div className="youtubePlayer intro-slide">
+            <div className="intro-content">
+                <h2 className="text-2xl font-bold mb-4">おはすずエンドレス！？</h2>
+                <p className="mb-4">七瀬すず菜さんの切り抜き動画をランダムに再生するプレイヤーです。</p>
+                <div className="profile-links mb-4">
+                    <p>七瀬すず菜さんの公式チャンネル：</p>
+                    <a
+                        href="https://www.youtube.com/@NanaseSuzuna"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:underline"
+                    >
+                        YouTube
+                    </a>
+                </div>
+                <button className='arrow-right'>再生開始！</button>
+            </div>
+        </div>
+    </div>
+);
+
 export default function Slick() {
     const [activeSlides, setActiveSlides] = useState(new Set([0]));
     const [readySlides, setReadySlides] = useState(new Set([0, 1]))
@@ -169,6 +193,7 @@ export default function Slick() {
             }));
             setVideos(prevVideos => [...prevVideos, ...newVideos]);
         }
+        
     };
 
     const handleVideoEnd = () => {
@@ -208,13 +233,17 @@ export default function Slick() {
                     swiperRef.current = swiper;
                 }}
             >
+                {/* 説明用スライドを最初に追加 */}
+                <SwiperSlide key="intro-slide">
+                    <IntroSlide />
+                </SwiperSlide>
                 {videos.map((video, index) => (
                     <SwiperSlide key={video.uniqueKey}>
                         <div className="youtubeSliderWrapper">
                             <YouTubePlayer
                                 videoId={video.id}
-                                isVisible={activeSlides.has(index)}
-                                isReady={readySlides.has(index)}
+                                isVisible={activeSlides.has(index+1)}
+                                isReady={readySlides.has(index+1)}
                                 start={video.start}
                                 end={video.end}
                                 onVideoEnd={handleVideoEnd}
