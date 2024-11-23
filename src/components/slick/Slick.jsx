@@ -119,17 +119,15 @@ export default function Slick() {
         });
     }, []);
 
-    // 初期動画リストをstateとして管理
-    const [videos, setVideos] = useState([
-        { id: "VxMbHYYszgM", title: "【朝活】おはすず 11月3日（月）【七瀬すず菜/にじさんじ】", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "9S5edniG--s", title: "Slide 2", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "KGDoMGHXFb8", title: "Slide 3", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "kTnxwuT6Z-g", title: "Slide 4", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "ab1hQ1ekA8Y", title: "Slide 5", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "B6Bs7ExEew0", title: "Slide 6", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04", start: "3318", end: "3340" },
-        { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04", start: "3318", end: "3340" },
-    ]);
+    // シャッフル関数
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
 
     // 基準となる動画リスト（新しい動画を追加する際のソースとして使用）
     const baseVideos = [
@@ -142,6 +140,14 @@ export default function Slick() {
         { id: "pB2NXKp5OyY", title: "Slide 7", date: "2024/11/04", start: "3318", end: "3340" },
         { id: "rAiVEXrPmKs", title: "Slide 8", date: "2024/11/04", start: "3318", end: "3340" },
     ];
+
+    // 初期状態ではシャッフルした配列を使用し、uniqueKeyを付与
+    const [videos, setVideos] = useState(() =>
+        shuffleArray(baseVideos).map(video => ({
+            ...video,
+            uniqueKey: uuidv4()
+        }))
+    );
 
     const handleSlideChange = (swiper) => {
         const { activeIndex } = swiper;
@@ -156,7 +162,8 @@ export default function Slick() {
 
         // 最後から2番目のスライドに到達したら新しい動画を追加
         if (activeIndex >= videos.length - 2) {
-            const newVideos = [...baseVideos].map(video => ({
+            // baseVideosをシャッフルして新しい配列を作成
+            const newVideos = shuffleArray(baseVideos).map(video => ({
                 ...video,
                 uniqueKey: uuidv4()
             }));
