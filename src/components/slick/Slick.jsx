@@ -170,7 +170,7 @@ export default function Slick({ handleArrowClick }) {
             }));
             setVideos(prevVideos => [...prevVideos, ...newVideos]);
         }
-        
+
     };
 
     const handleVideoEnd = () => {
@@ -183,23 +183,23 @@ export default function Slick({ handleArrowClick }) {
     // 説明用スライドのコンポーネント
     const IntroSlide = () => (
         <div className="youtubeSliderWrapper">
-            <div className="youtubePlayer intro-slide">
-                <div className="intro-content">
-                    <h2 className="text-2xl font-bold mb-4">おはすずエンドレス！？</h2>
-                    <p className="mb-4">七瀬すず菜さんの切り抜き動画をランダムに再生するプレイヤーです。</p>
-                    <div className="profile-links mb-4">
-                        <p>七瀬すず菜さんの公式チャンネル：</p>
-                        <a
-                            href="https://www.youtube.com/@NanaseSuzuna"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-500 hover:underline"
-                        >
-                            YouTube
-                        </a>
+            <div className="youtubePlayer FirstYoutubePlayer">
+                <div className="introWrapper">
+                    <div className="introTextWrapper">
+                        <p><span className="em">思いついちゃった話</span>が<span className="em">永遠に続く！</span></p>
+                        <p>終わらないおはすずが聴ける</p>
+                        <p><span className="em">非公式サイト</span>です</p>
                     </div>
-                    <button onClick={handleVideoEnd}>再生開始！</button>
+                    <div className='introListWrapper'>
+                        <p>七瀬すず菜さん：</p>
+                        <ul>
+                            <li><a href="#">X（旧Twitter）</a></li>
+                            <li><a href="#">Youtube</a></li>
+                        </ul>
+                    </div>
+                    <button onClick={handleVideoEnd} className='startButton'>視聴を開始！</button>
                 </div>
+                <img className='suzunaImg' src="/assets/suzuna.png" alt="" />
             </div>
         </div>
     );
