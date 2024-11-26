@@ -148,7 +148,9 @@
     font-weight: 600;
 }
 .introWrapper{
-    margin: 50px;
+    margin: 30px;
+    padding: 20px;
+    background-color: #FFF;
 }
 .suzunaImg{
     position: absolute;

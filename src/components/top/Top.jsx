@@ -5,7 +5,7 @@ import Counter from '../counter/Counter'
 export default function Top({ startTime, isTimerStarted }) {
   return (
     <div className='topWrapper'>
-      <div className="img">ロゴ</div>
+      <img src="/assets/logo.png" alt="" className='img'/>
       <Counter startTime={startTime} isTimerStarted={isTimerStarted} />
     </div>
   )

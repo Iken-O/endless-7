@@ -1,18 +1,26 @@
 .counterWrapper{
-    background-color: #B5E063;
-    color: #EB6968;
-    height: 100px;
-    width: 325px;
+    width: 345px;
+    position: relative;
+    transform: rotate(3deg);
+}
+.counterFrame{
+    width: 100%;
+}
+.textWrapper{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-weight: 800;
+    color: #B5E063;
+    font-weight: 700;
 }
 .title{
-    font-size: 0.9em;
-    margin-bottom: -0.9em;
+    font-size: 1.2em;
+    margin-bottom: -1em;
 }
 .counter{
-    font-size: 3em;
+    font-size: 4em;
 }

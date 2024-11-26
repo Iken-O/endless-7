@@ -35,8 +35,11 @@ export default function Counter({ startTime, isTimerStarted }) {
 
   return (
     <div className='counterWrapper'>
-        <p className="title">経過時間</p>
-        <p className="counter">{elapsedTime}</p>
+        <div className="textWrapper">
+          <p className="title">経過時間</p>
+          <p className="counter">{elapsedTime}</p>
+        </div>
+        <img src="/assets/counterFrame.png" alt="" className='counterFrame'/>
     </div>
   )
 }
