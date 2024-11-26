@@ -34,36 +34,6 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.ShareSquareButtons {
-    display: flex;
-}
-
-.shareSquareButton {
-    background-color: #FFF;
-    height: 32px;
-    width: 32px;
-    margin: 2px;
-}
-
-.shareSquareButton a {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.shareSquareButtonX {
-    border: #000 solid 1px;
-    background-color: #000;
-    margin-right: 0px;
-}
-
-.shareSquareButtonYoutube {
-    border: #FF0000 solid 1px;
-}
-
 /* .arrowButtonsWrapper {
     position: absolute;
     width: 100%;
@@ -119,24 +89,39 @@
 
 .arrowButtonText {
     margin-bottom: 20px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.25em;
 }
 
 .youtubeTitleWrapper {
     font-weight: 800;
     display: flex;
-    align-items: flex-end
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    width: 100%;
 }
 
 .youtubeTitle {
     font-size: 0.95em;
 }
-
-.youtubeDate {
-    font-size: 0.6em;
-    color: #999;
-    margin-bottom: 2px;
+.youtubeMoreWrapper{
+    height: 100%;
+    border-bottom: 2px solid #EB6968;
+    padding: 0px 5px 0px 3px;
+    margin-right: 3px;
+}
+.youtubeMoreWrapper a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.youtubeMore{
+    font-size: 0.95em;
+    color: #EB6968;
+}
+.youtubeMoreImg{
+    margin-top: 2px;
 }
 /* テスト */
 .FirstYoutubePlayer {
@@ -146,11 +131,15 @@
     position: relative;
     font-size: 1.4em;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 .introWrapper{
-    margin: 30px;
     padding: 20px;
     background-color: #FFF;
+    width: 90%;
 }
 .suzunaImg{
     position: absolute;
@@ -159,10 +148,13 @@
     height: 340px;
 }
 .em{
-    background-color: #B5E063;
+    background: linear-gradient(transparent 60%, #B5E063 40%);
 }
 .introListWrapper,.startButton{
     margin-top: 15px;
+}
+.introList{
+    font-size: 0.9em;
 }
 .startButton {
     background-color: #EB6968;

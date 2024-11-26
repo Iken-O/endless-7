@@ -192,9 +192,9 @@ export default function Slick({ handleArrowClick }) {
                     </div>
                     <div className='introListWrapper'>
                         <p>七瀬すず菜さん：</p>
-                        <ul>
-                            <li><a href="#">X（旧Twitter）</a></li>
-                            <li><a href="#">Youtube</a></li>
+                        <ul className='introList'>
+                            <li><a href='https://www.youtube.com/@NanaseSuzuna' target="_blank" rel="noopener noreferrer">Youtube</a></li>
+                            <li><a href='https://x.com/suzuna_nanase' target="_blank" rel="noopener noreferrer">X（旧Twitter）</a></li>
                         </ul>
                     </div>
                     <button onClick={handleVideoEnd} className='startButton'>視聴を開始！</button>
@@ -251,17 +251,10 @@ export default function Slick({ handleArrowClick }) {
                             <div className='youtubeDescription'>
                                 <div className='youtubeTitleWrapper'>
                                     <p className="youtubeTitle">{video.title}</p>
-                                    <p className="youtubeDate">{video.date}</p>
-                                </div>
-                                <div className='ShareSquareButtons'>
-                                    <div className="shareSquareButton shareSquareButtonX">
-                                        <a href="https://x.com/suzuna_nanase">
-                                            <img src="/assets/xIcon.png" height={22} width={21} alt="" />
-                                        </a>
-                                    </div>
-                                    <div className='shareSquareButton shareSquareButtonYoutube'>
-                                        <a href="https://www.youtube.com/@NanaseSuzuna">
-                                            <img src="/assets/ytIcon.png" height={14} width={20} alt="" />
+                                    <div className="youtubeMoreWrapper">
+                                        <a href={`https://www.youtube.com/watch?v=${video.id}&t=${video.end}s`} target="_blank" rel="noopener noreferrer">
+                                            <p className="youtubeMore">続きを聴く</p>
+                                            <img className='youtubeMoreImg' src="/assets/more.svg" alt="" />
                                         </a>
                                     </div>
                                 </div>
