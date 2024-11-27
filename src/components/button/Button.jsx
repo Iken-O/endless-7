@@ -5,7 +5,7 @@ const Button = ({ startTime, isTimerStarted }) => {
   const [elapsedTime, setElapsedTime] = useState('0秒');
   const [shareUrl, setShareUrl] = useState(() => {
     // 初期状態のURLを生成
-    const baseUrl = 'https://koucho-endless.com/';
+    const baseUrl = 'https://shop.nijisanji.jp/4048';
     const initialShareText = '七瀬さんの話を 0秒 聞きました';
     const encodedText = encodeURIComponent(initialShareText + '\n');
     return `https://twitter.com/share?url=${encodeURIComponent(baseUrl)}&text=${encodedText}`;
