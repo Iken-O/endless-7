@@ -205,7 +205,7 @@ export default function Slick({ handleArrowClick }) {
     );
 
     if (!isAPIReady) {
-        return <div>Loading YouTube API...</div>;
+        return <div className='LoadingMessage'>Loading YouTube API...</div>;
     }
 
     return (

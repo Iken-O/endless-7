@@ -4,6 +4,7 @@ import Top from './components/top/Top'
 import Button from './components/button/Button';
 import Credit from './components/credit/Credit';
 import Main from './components/main/Main';
+import Rellax from "./components/rellax/Rellax";
 
 export default function App() {
   const [startTime, setStartTime] = useState(null);
@@ -18,6 +19,7 @@ export default function App() {
   return (
     <>
       <div className="frame">
+        <Rellax />
         <Top startTime={startTime} isTimerStarted={isTimerStarted} />
         <Main handleArrowClick={handleArrowClick}/>
         <Button startTime={startTime} isTimerStarted={isTimerStarted} />

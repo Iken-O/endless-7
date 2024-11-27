@@ -139,7 +139,7 @@
 .introWrapper{
     padding: 20px;
     background-color: #FFF;
-    width: 90%;
+    width: 83%;
 }
 .suzunaImg{
     position: absolute;
@@ -173,4 +173,7 @@
     transform: translateY(4px);
     /* transform: translateX(4px); */
     box-shadow: 0px 0px 0px 0px rgba(161, 75, 74, 1);
+}
+.LoadingMessage{
+    color: #FCD3D9;
 }

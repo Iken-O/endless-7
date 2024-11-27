@@ -1,5 +1,6 @@
 
 .frame {
+    position: relative;
     top: 0px;
     margin: 20px; /* 20px のマージンを保持 */
     border: 30px solid #EB6968;
