@@ -183,6 +183,7 @@ export default function Slick({ handleArrowClick }) {
     // 説明用スライドのコンポーネント
     const IntroSlide = () => (
         <div className="youtubeSliderWrapper">
+            <div className='youtubeSliderShutter'></div>
             <div className="youtubePlayer FirstYoutubePlayer">
                 <div className="introWrapper">
                     <div className="introTextWrapper">
@@ -240,6 +241,7 @@ export default function Slick({ handleArrowClick }) {
                 {videos.map((video, index) => (
                     <SwiperSlide key={video.uniqueKey}>
                         <div className="youtubeSliderWrapper">
+                            <div className='youtubeSliderShutter'></div>
                             <YouTubePlayer
                                 videoId={video.id}
                                 isVisible={activeSlides.has(index + 1)}
