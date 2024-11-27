@@ -14,6 +14,7 @@ export default function Counter({ startTime, isTimerStarted }) {
         const svgPosition0 = document.querySelector(".svgPosition0")
         counterWrapper.classList.add("slidein")
         buttonWrapper.classList.add("zoomin")
+        buttonWrapper.classList.remove("invisible")
         svgPosition0.classList.add("invisible")
         
         

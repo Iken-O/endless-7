@@ -32,7 +32,7 @@ const Button = ({ startTime, isTimerStarted }) => {
         setElapsedTime(trimmedTime);
         
         // シェアURLを動的に更新
-        const baseUrl = 'https://koucho-endless.com/';
+        const baseUrl = 'https://shop.nijisanji.jp/4048';
         const shareText = `七瀬さんの話を ${trimmedTime} 聞きました`;
         const encodedText = encodeURIComponent(shareText + '\n');
         const newShareUrl = `https://twitter.com/share?url=${encodeURIComponent(baseUrl)}&text=${encodedText}`;
