@@ -9,6 +9,14 @@ export default function Counter({ startTime, isTimerStarted }) {
 
     if (isTimerStarted && startTime) {
       intervalId = setInterval(() => {
+        const counterWrapper = document.querySelector(".counterWrapper")
+        const buttonWrapper = document.querySelector(".buttonWrapper")
+        const svgPosition0 = document.querySelector(".svgPosition0")
+        counterWrapper.classList.add("slidein")
+        buttonWrapper.classList.add("zoomin")
+        svgPosition0.classList.add("invisible")
+        
+        
         const now = new Date();
         const diff = now - startTime;
         
@@ -34,7 +42,7 @@ export default function Counter({ startTime, isTimerStarted }) {
   }, [startTime, isTimerStarted]);
 
   return (
-    <div className='counterWrapper'>
+    <div className='counterWrapper invisible'>
         <div className="textWrapper">
           <p className="title">経過時間</p>
           <p className="counter">{elapsedTime}</p>

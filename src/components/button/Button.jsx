@@ -48,7 +48,7 @@ const Button = ({ startTime, isTimerStarted }) => {
   }, [startTime, isTimerStarted]);
 
   return (
-    <div className='buttonWrapper'>
+    <div className='buttonWrapper invisible'>
       <div className='shareButton'>
         <a href={shareUrl} rel="nofollow" target="_blank">
           <img src="assets/xIcon.png" className='xIcon' alt="" />
