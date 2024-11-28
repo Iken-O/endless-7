@@ -248,14 +248,16 @@ export default function Slick({ handleArrowClick }) {
                     <SwiperSlide key={video.uniqueKey}>
                         <div className="youtubeSliderWrapper">
                             <div className='youtubeSliderShutter'></div>
-                            <YouTubePlayer
-                                videoId={video.id}
-                                isVisible={activeSlides.has(index + 1)}
-                                isReady={readySlides.has(index + 1)}
-                                start={video.start}
-                                end={video.end}
-                                onVideoEnd={handleVideoEnd}
-                            />
+                            <div className="beResponsive">
+                                <YouTubePlayer
+                                    videoId={video.id}
+                                    isVisible={activeSlides.has(index + 1)}
+                                    isReady={readySlides.has(index + 1)}
+                                    start={video.start}
+                                    end={video.end}
+                                    onVideoEnd={handleVideoEnd}
+                                />
+                            </div>
                             <div className='youtubeDescription'>
                                 <div className='youtubeTitleWrapper'>
                                     <p className="youtubeTitle">{video.title}</p>

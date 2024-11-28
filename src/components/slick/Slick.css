@@ -16,13 +16,7 @@
     align-items: center;
 }
 
-.youtubeSliderWrapper {
-    border: 5px solid #EB6968;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-.youtubeSliderShutter{
+.youtubeSliderShutter {
     position: absolute;
     background-color: #FCD3D9;
     height: 100%;
@@ -30,10 +24,17 @@
     z-index: 5;
     opacity: 0.9;
 }
-.swiper-slide-active .youtubeSliderWrapper .youtubeSliderShutter{
-display: none;
+
+.swiper-slide-active .youtubeSliderWrapper .youtubeSliderShutter {
+    display: none;
 }
 
+.youtubeSliderWrapper {
+    border: 5px solid #EB6968;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 .youtubePlayer {
     min-height: 360px;
     min-width: 640px;
@@ -46,6 +47,7 @@ display: none;
     align-items: center;
     justify-content: space-between;
 }
+
 /* .arrowButtonsWrapper {
     position: absolute;
     width: 100%;
@@ -86,7 +88,7 @@ display: none;
     border-radius: 7px;
     background-color: #FFF;
     box-shadow: 4px 4px 0px 0px rgba(161, 75, 74, 1);
-    transition: transform 0.1s ease, box-shadow 0.1s ease,border 0.5s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.5s ease;
 }
 
 .arrow:active {
@@ -94,21 +96,26 @@ display: none;
     /* transform: translateX(4px); */
     box-shadow: 0px 0px 0px 0px rgba(161, 75, 74, 1);
 }
-.disabled .arrow{
+
+.disabled .arrow {
     border: #EAEAEA solid 4px;
     box-shadow: 4px 4px 0px 0px rgba(193, 193, 193, 1);
     cursor: not-allowed;
 }
-.disabled .arrowButtonText{
+
+.disabled .arrowButtonText {
     color: #C1C1C1;
 }
-.disabled .arrow:active{
+
+.disabled .arrow:active {
     transform: translateY(0px);
 }
-.disabled .arrow svg path{
+
+.disabled .arrow svg path {
     fill: #EAEAEA;
 }
-path{
+
+path {
     transition: fill 0.5s ease;
 }
 
@@ -135,24 +142,29 @@ path{
 .youtubeTitle {
     font-size: 0.95em;
 }
-.youtubeMoreWrapper{
+
+.youtubeMoreWrapper {
     height: 100%;
     border-bottom: 2px solid #EB6968;
     padding: 0px 5px 0px 3px;
     margin-right: 3px;
 }
-.youtubeMoreWrapper a{
+
+.youtubeMoreWrapper a {
     display: flex;
     justify-content: center;
     text-decoration: none;
 }
-.youtubeMore{
+
+.youtubeMore {
     font-size: 0.95em;
     color: #EB6968;
 }
-.youtubeMoreImg{
+
+.youtubeMoreImg {
     margin-top: 2px;
 }
+
 /* テスト */
 .FirstYoutubePlayer {
     background-image: url("/public/assets/youtubeSliderBG.png");
@@ -166,26 +178,32 @@ path{
     justify-content: center;
 
 }
-.introWrapper{
+
+.introWrapper {
     padding: 20px;
     background-color: #FFF;
     width: 83%;
 }
-.suzunaImg{
+
+.suzunaImg {
     position: absolute;
     right: 0px;
     bottom: 0px;
     height: 340px;
 }
-.em{
+
+.em {
     background: linear-gradient(transparent 60%, #B5E063 40%);
 }
-.introListWrapper,.startButton{
+
+.introListWrapper, .startButton {
     margin-top: 15px;
 }
-.introList{
+
+.introList {
     font-size: 0.9em;
 }
+
 .startButton {
     background-color: #EB6968;
     height: 50px;
@@ -199,11 +217,13 @@ path{
     color: #FFF;
     cursor: pointer;
 }
+
 .startButton:active {
     transform: translateY(4px);
     /* transform: translateX(4px); */
     box-shadow: 0px 0px 0px 0px rgba(161, 75, 74, 1);
 }
-.LoadingMessage{
+
+.LoadingMessage {
     color: #FCD3D9;
 }
