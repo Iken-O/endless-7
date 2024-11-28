@@ -204,7 +204,7 @@ export default function Slick({ handleArrowClick }) {
                     </div>
                     <button onClick={handleVideoEnd} className='startButton'>視聴を開始！</button>
                 </div>
-                <img className='suzunaImg' src="/assets/suzuna.png" alt="" />
+                <img className='suzunaImg' src="/assets/suzuna.webp" alt="" />
             </div>
         </div>
     );

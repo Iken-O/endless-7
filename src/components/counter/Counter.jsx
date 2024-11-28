@@ -48,7 +48,7 @@ export default function Counter({ startTime, isTimerStarted }) {
           <p className="title">経過時間</p>
           <p className="counter">{elapsedTime}</p>
         </div>
-        <img src="/assets/counterFrame.png" alt="" className='counterFrame'/>
+        <img src="/assets/counterFrame.webp" alt="" className='counterFrame'/>
     </div>
   )
 }

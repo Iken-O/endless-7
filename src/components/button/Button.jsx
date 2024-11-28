@@ -10,7 +10,7 @@ const Button = ({ startTime, isTimerStarted }) => {
     const encodedText = encodeURIComponent(initialShareText + '\n');
     return `https://twitter.com/share?url=${encodeURIComponent(baseUrl)}&text=${encodedText}`;
   });
-  
+
   useEffect(() => {
     let intervalId;
 
@@ -30,7 +30,7 @@ const Button = ({ startTime, isTimerStarted }) => {
 
         const trimmedTime = formattedTime.trim();
         setElapsedTime(trimmedTime);
-        
+
         // シェアURLを動的に更新
         const baseUrl = 'https://shop.nijisanji.jp/4048';
         const shareText = `七瀬さんの話を ${trimmedTime} 聞きました`;

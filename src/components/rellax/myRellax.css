@@ -45,6 +45,7 @@
 .svgPosition5 {
     right: 50px;
     top: 90%;
+    animation-delay: 1s;
 }
 
 @keyframes floating-y-A {
