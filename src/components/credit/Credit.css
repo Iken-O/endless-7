@@ -6,7 +6,7 @@
 .creditFrame{
     border: solid #EB6968 9px;
     background-color: #FFF9EF;
-    width: 90%;
+    width: 80%;
     margin: 50px 0;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,8 @@ a{
     color: #EB6968;
 }
 .creditLists{
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 400;
     margin: 5px 0;
 }
 .withoutDot{
