@@ -75,3 +75,35 @@
         transform: scale(1);
     }
 }
+@media screen and (max-width: 768px) {
+    .counterWrapper {
+        width: 30%;
+        margin-bottom: 10px;
+    }
+    .title {
+        font-size: 8px;
+        margin-bottom: -4px;
+    }
+    
+    .counter {
+        font-size: 20px;
+    }
+    @keyframes slideIn {
+        0% {
+            transform: translateX(30px);
+            opacity: 0;
+            rotate: 12deg;
+            scale: 1.2;
+        }
+    
+        100% {
+            transform: translateX(-10px);
+            rotate: 6deg;
+            scale: 1.2;
+        }
+    
+        40%, 100% {
+            opacity: 1;
+        }
+    }
+}

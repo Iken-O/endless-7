@@ -34,3 +34,10 @@ a{
 .withoutDot{
     list-style: none;
 }
+@media screen and (max-width: 768px) {
+    .creditFrame{
+        margin-top: 1em;
+        border: 5px solid #EB6968;
+        width: 90%;
+    }
+}

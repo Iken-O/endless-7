@@ -1,10 +1,22 @@
-.topWrapper{
+.topWrapper {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 1em 0;
+    padding: 1em 0;
 }
-.img{
-   max-height: 12.5em;
+
+.img {
+    max-height: 12.5em;
     scale: 1.1;
+}
+
+@media screen and (max-width: 768px) {
+    .topWrapper {
+        align-items: end;
+    }
+
+    .img {
+        width: 60%;
+        scale: 1;
+    }
 }

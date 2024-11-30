@@ -35,11 +35,12 @@
     flex-direction: column;
     position: relative;
 }
-.beResponsive{
+
+.beResponsive {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
-    overflow: hidden;  
+    overflow: hidden;
 }
 
 .youtubePlayer {
@@ -69,13 +70,12 @@
 .arrowButtonWrapperLeft {
     transform: translate(-50%, -50%);
     left: 16.5%;
-    top: calc(50% - 1.25em);
+
 }
 
 .arrowButtonWrapperRight {
     transform: translate(50%, -50%);
     right: 16.5%;
-    top: calc(50% - 1.25em);
 }
 
 .arrowButtonWrapper {
@@ -86,6 +86,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    top: calc(50% - 1.25em);
 }
 
 .arrow {
@@ -101,8 +102,9 @@
     box-shadow: 4px 4px 0px 0px rgba(161, 75, 74, 1);
     transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.5s ease;
 }
-.arrow img{
-    width: 95%;
+
+.arrow img, .arrow svg {
+    height: 80%;
 }
 
 .arrow:active {
@@ -155,6 +157,7 @@ path {
 
 .youtubeTitle {
     font-size: 0.95em;
+    text-align: start;
 }
 
 .youtubeMoreWrapper {
@@ -210,19 +213,22 @@ path {
     height: 85%;
 }
 
-.introTextWrapper p{
+.introTextWrapper p {
     font-size: 1.9em;
 }
+
 @media screen and (max-width: 1500px) {
-    .introTextWrapper p{
+    .introTextWrapper p {
         font-size: 1.6em;
     }
 }
-.introListWrapper p,.introListWrapper ul li a{
+
+.introListWrapper p, .introListWrapper ul li a {
     font-size: 1.6em;
 }
+
 @media screen and (max-width: 1500px) {
-    .introListWrapper p,.introListWrapper ul li a{
+    .introListWrapper p, .introListWrapper ul li a {
         font-size: 1.4em;
     }
 }
@@ -261,4 +267,122 @@ path {
 
 .LoadingMessage {
     color: #FCD3D9;
+}
+
+.mobileArrowButtonWrapper {
+    display: contents;
+}
+
+.mobileArrowButtonText {
+    display: none;
+}
+.mobileYoutubePlayer{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .introWrapper {
+        display: none;
+    }
+
+    .arrowButtonWrapper {
+        position: relative;
+    }
+
+    .youtubeSliderWrapper {
+        width: 90%;
+    }
+
+    .FirstYoutubePlayer {
+        height: calc(95vw * 400/648);
+    }
+
+    .mobileArrowButtonWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 1em auto;
+        width: calc(90% + 10px);
+    }
+
+    .arrowButtonWrapperLeft {
+        transform: translate(0);
+        left: 0;
+    }
+
+    .arrowButtonWrapperRight {
+        transform: translate(0);
+        right: 0;
+    }
+
+    .arrowButtonText {
+        display: none;
+    }
+
+    .mobileArrowButtonText {
+        display: block;
+        font-weight: 700;
+        font-size: 1.2em;
+    }
+
+    .arrow {
+        width: 43vw;
+        height: 4em;
+        justify-content: space-around;
+    }
+
+    .arrow-right {
+        transform: translateX(-2px);
+    }
+
+    .arrow img, .arrow svg {
+        height: 70%;
+    }
+
+    .mobileYoutubePlayer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .FirstYoutubePlayer {
+        display: none;
+    }
+
+    .mobileYoutubeImg {
+        width: 90vw;
+        border: #EB6968 solid 5px;
+        transform: translateX(-2.5px);
+    }
+
+    .mobileYoutubeButtonWrapper {
+        height: calc(1.5em * 2 + 10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .youtubeTitle {
+        font-weight: 700;
+    }
+
+    .mobileYoutubeButton {
+        height: calc(1.5em * 2);
+        /* width: calc(100% - 10px); */
+        /* height: 100%; */
+        width: 100%;
+        background-color: #EB6968;
+        color: #FFF;
+        font-size: 1em;
+        font-weight: 600;
+        border-radius: 7px;
+        box-shadow: 4px 4px 0px 0px rgba(161, 75, 74, 1);
+        transform: translate(-2px , -2px);
+    }
+    .mobileYoutubeButton p{
+        font-size: 1.3em;
+    }
+    .firstYoutubeSliderWrapper{
+        border: none;
+    }
 }

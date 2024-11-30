@@ -1,11 +1,22 @@
-
 .frame {
     position: relative;
     top: 0px;
-    margin: 20px; /* 20px のマージンを保持 */
+    margin: 20px;
     border: 30px solid #EB6968;
     border-radius: 70px;
-    box-sizing: border-box; /* ボーダーも含めてサイズ計算 */
     background-color: #FFF;
     background-image: url(../public/assets/check.png);
+}
+
+@media screen and (max-width: 768px) {
+    /* .frame {
+        margin: 10px; 
+        border: 20px solid #EB6968;
+        border-radius: 50px;
+    } */
+    .frame {
+        margin: 0px; 
+        border: 0px solid #EB6968;
+        border-radius: 0px;
+    }
 }
