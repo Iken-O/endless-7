@@ -55,7 +55,7 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
                     width: '100%',
                     height: '100%',
                     playerVars: {
-                        autoplay: 1,
+                        autoplay: 0,
                         controls: 1,
                         modestbranding: 1,
                         rel: 0,
