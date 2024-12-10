@@ -326,6 +326,10 @@ path {
         display: block;
         font-weight: 700;
         font-size: 1.2em;
+        color: #464646;
+    }
+    .swiper-button-disabled .mobileArrowButtonText{
+        color: #C1C1C1;
     }
 
     .arrow {
