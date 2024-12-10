@@ -61,4 +61,7 @@
         border: 0px solid #EB6968;
         border-radius: 0px;
     }
+    .frame::before, .frame::after,.polygon::after,.polygon::before{
+        display: none;
+    }
 }

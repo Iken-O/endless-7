@@ -6,24 +6,26 @@ export default function Roading() {
 
     useEffect(() => {
         const loading = loadingRef.current;
-
+    
         if (!loading) return;
-
+    
         const handleLoad = () => {
-            // 3秒後にローディング画面を非表示にする
             setTimeout(() => {
                 loading.classList.add('loaded');
             }, 1000);
         };
-
-        // ページの読み込み完了時に処理を実行
-        window.addEventListener('load', handleLoad);
-
-        // クリーンアップ
+    
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
+    
         return () => {
             window.removeEventListener('load', handleLoad);
         };
     }, []);
+    
 
     return (
         <div className='loadingWrapper' ref={loadingRef}>
