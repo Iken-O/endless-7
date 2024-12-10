@@ -5,7 +5,7 @@ const Button = ({ startTime, isTimerStarted }) => {
   const [elapsedTime, setElapsedTime] = useState('0秒');// eslint-disable-line no-unused-vars
   const [shareUrl, setShareUrl] = useState(() => {
     // 初期状態のURLを生成
-    const baseUrl = 'https://shop.nijisanji.jp/4048';
+    const baseUrl = 'https://endless-7.netlify.app/';
     const initialShareText = '七瀬さんの話を 0秒 聞きました';
     const encodedText = encodeURIComponent(initialShareText + '\n');
     return `https://twitter.com/share?url=${encodeURIComponent(baseUrl)}&text=${encodedText}`;
@@ -32,7 +32,7 @@ const Button = ({ startTime, isTimerStarted }) => {
         setElapsedTime(trimmedTime);
 
         // シェアURLを動的に更新
-        const baseUrl = 'https://shop.nijisanji.jp/4048';
+        const baseUrl = 'https://endless-7.netlify.app/';
         const shareText = `七瀬さんの話を ${trimmedTime} 聞きました`;
         const encodedText = encodeURIComponent(shareText + '\n');
         const newShareUrl = `https://twitter.com/share?url=${encodeURIComponent(baseUrl)}&text=${encodedText}`;
