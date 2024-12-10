@@ -9,7 +9,7 @@ export default function Credit() {
           <section className='creditSection'>
             <h2>このサイトについて</h2>
             <ul className='creditLists'>
-              <li>七瀬すず菜さんの思っちゃった/てかさぁ！した部分をランダムで連続自動再生する非公式サイトです。</li>
+              <li>七瀬すず菜さんの思っちゃった/てかさぁ！した場面をランダムで連続自動再生する非公式サイトです。</li>
               <li>このサイトでは、YouTubeの公式埋め込みプレイヤーを使用しています。再生はYouTube上での視聴回数に反映され、広告が表示される場合、その収益はチャンネルに還元されます。</li>
             </ul>
           </section>
@@ -17,7 +17,8 @@ export default function Credit() {
             <h2>参考にさせていただいたサイト</h2>
             <ul className='creditLists'>
               <li><a href="https://koucho-endless.com/" target="_blank" rel="noopener noreferrer">校長先生の話エンドレス</a></li>
-              <li><a href="https://note.com/yudutu/n/n33c03ce7919b" target="_blank" rel="noopener noreferrer">加賀美ハヤト社長の歌を検索・視聴できるサイトを作りました</a></li>
+              {/* <li><a href="https://note.com/yudutu/n/n33c03ce7919b" target="_blank" rel="noopener noreferrer">加賀美ハヤト社長の歌を検索・視聴できるサイトを作りました</a></li> */}
+              <li><a href="https://example.com" target="_blank" rel="noopener noreferrer">ダミーテキスト</a></li>
             </ul>
           </section>
           <section className='creditSection'>
