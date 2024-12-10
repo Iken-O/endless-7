@@ -2,20 +2,62 @@
     position: relative;
     top: 0px;
     margin: 20px;
-    border: 30px solid #EB6968;
+    padding: 30px;
     border-radius: 70px;
     background-color: #FFF;
     background-image: url(../public/assets/check.png);
 }
 
+.frame::before, .frame::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: 30px solid #EB6968;
+    box-sizing: border-box;
+    border-radius: 70px;
+    pointer-events: none;
+}
+
+.frame::before {
+    clip-path: polygon(100% 0, 100% 84%, 50% 84%, 50% 10%, 0 10%, 0 0);
+}
+
+.frame::after {
+    clip-path: polygon(50% 90%, 100% 90%, 100% 100%, 0 100%, 0 16%, 50% 16%);
+}
+
+.polygon{
+    position: relative;
+}
+.polygon::before{
+    content: url(../public/assets/Polygon.svg);
+    position: absolute;
+    top: 10%;
+    left: 0px;
+    transform: translate(49px, 30px);
+    rotate: 180deg;
+}
+.polygon::after{
+    content: url(../public/assets/Polygon.svg);
+    position: absolute;
+    bottom: 10%;
+    right: 0px;
+    transform: translate(49px, 30px);
+}
 @media screen and (max-width: 768px) {
+
     /* .frame {
         margin: 10px; 
         border: 20px solid #EB6968;
         border-radius: 50px;
     } */
     .frame {
-        margin: 0px; 
+        margin: 0px;
+        padding: 0px;
         border: 0px solid #EB6968;
         border-radius: 0px;
     }

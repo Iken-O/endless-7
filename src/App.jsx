@@ -20,12 +20,14 @@ export default function App() {
   return (
     <>
       <div className="frame">
-        <Roading />
-        <Rellax />
-        <Top startTime={startTime} isTimerStarted={isTimerStarted} />
-        <Main handleArrowClick={handleArrowClick}/>
-        <Button startTime={startTime} isTimerStarted={isTimerStarted} />
-        <Credit />
+        <div className="polygon">
+          <Roading />
+          <Rellax />
+          <Top startTime={startTime} isTimerStarted={isTimerStarted} />
+          <Main handleArrowClick={handleArrowClick}/>
+          <Button startTime={startTime} isTimerStarted={isTimerStarted} />
+          <Credit />
+        </div>
       </div>
     </>
   );

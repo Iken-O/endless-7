@@ -156,6 +156,10 @@ path {
 }
 
 .youtubeTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+    text-overflow: ellipsis;
     font-size: 0.95em;
     text-align: start;
 }
@@ -363,6 +367,7 @@ path {
     }
 
     .youtubeTitle {
+        white-space: normal;
         font-weight: 700;
     }
 
