@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./Button.css";
 
 const Button = ({ startTime, isTimerStarted }) => {
-  const [elapsedTime, setElapsedTime] = useState('0秒');
+  const [elapsedTime, setElapsedTime] = useState('0秒');// eslint-disable-line no-unused-vars
   const [shareUrl, setShareUrl] = useState(() => {
     // 初期状態のURLを生成
     const baseUrl = 'https://shop.nijisanji.jp/4048';
@@ -50,7 +50,7 @@ const Button = ({ startTime, isTimerStarted }) => {
   return (
     <div className='buttonWrapper invisible'>
       <div className='shareButton'>
-        <a href={shareUrl} rel="nofollow" target="_blank">
+        <a href={shareUrl} rel="noreferrer" target="_blank" >
           <img src="assets/xIcon.png" className='xIcon' alt="" />
           <p>もう十分です...</p>
         </a>
