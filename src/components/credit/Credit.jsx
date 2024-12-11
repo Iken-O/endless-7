@@ -31,7 +31,7 @@ export default function Credit() {
           <section className='creditSection'>
             <h2>Special Thanks</h2>
             <ul className='creditLists'>
-              <li>リスナーさんの「思っちゃったか」「はい七瀬さん」「てかさぁ！」等のチャットを参考に配信を切り抜かせていただきました。</li>
+              <li>リスナーさんの「思っちゃったか」「はい七瀬さん」「てかさぁ！」等のチャットを参考に配信を切り抜かせていただきました。リスナーの皆様に感謝いたします</li>
             </ul>
           </section>
           <section className='creditSection'>
