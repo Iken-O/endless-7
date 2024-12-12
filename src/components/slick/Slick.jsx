@@ -64,11 +64,6 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
                         end: end
                     },
                     events: {
-                        onReady: (event) => {
-                            console.log('Player ready', videoId);
-                            // 読み込み完了時に再生開始
-                            event.target.playVideo();
-                        },
                         onStateChange: (event) => {
                             if (event.data === 0) {
                                 console.log('Video ended');
