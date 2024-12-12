@@ -65,9 +65,12 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
                     },
                     events: {
                         onReady: (event) => {
-                            console.log('Player ready', videoId);
-                            // 読み込み完了時に再生開始
-                            event.target.playVideo();
+                            // 動画をロードし、特定の開始・終了時間を設定
+                            event.target.loadVideoById({
+                                videoId: videoId,
+                                startSeconds: start || 0,
+                                endSeconds: end
+                            });
                         },
                         onStateChange: (event) => {
                             if (event.data === 0) {
