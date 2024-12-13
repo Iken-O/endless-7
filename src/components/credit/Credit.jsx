@@ -17,8 +17,7 @@ export default function Credit() {
             <h2>参考にさせていただいたサイト</h2>
             <ul className='creditLists'>
               <li><a href="https://koucho-endless.com/" target="_blank" rel="noopener noreferrer">校長先生の話エンドレス</a></li>
-              {/* <li><a href="https://note.com/yudutu/n/n33c03ce7919b" target="_blank" rel="noopener noreferrer">加賀美ハヤト社長の歌を検索・視聴できるサイトを作りました</a></li> */}
-              <li><a href="https://example.com" target="_blank" rel="noopener noreferrer">ダミーテキスト</a></li>
+              <li><a href="https://note.com/yudutu/n/n33c03ce7919b" target="_blank" rel="noopener noreferrer">加賀美ハヤト社長の歌を検索・視聴できるサイトを作りました</a></li>
             </ul>
           </section>
           <section className='creditSection'>
