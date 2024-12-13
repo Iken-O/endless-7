@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react'
+import "../slick/Slick.css"
 import "./IosFrame.css"
+import '../slick/Slick.css';
+import baseVideos from '../../data/videoUrls';
 
-const baseVideos = [
-    { id: "bzlwrP1586g", title: "おはすず 9月1日（日）", start: "5386", end: "5947" },
-    { id: "GxbTQ6y7bRY", title: "おはすず 10月2日（水）", start: "2465", end: "2913" },
-    { id: "hBkJXmkGT_0", title: "おはすず 10月3日（木）", start: "2775", end: "2775" },
-    { id: "hBkJXmkGT_0", title: "おはすず 10月3日（木）", start: "3184", end: "3512" },
-]
-
-export default function IosFrame() {
+export default function IosFrame({ handleArrowClick }) {
     const [player, setPlayer] = useState(null);
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+    const [currentVideoIndex, setCurrentVideoIndex] = useState(-1); // 初期状態は-1（空のフレーム）
+    const [shuffledVideos, setShuffledVideos] = useState([]);
+    const [showAttention, setShowAttention] = useState(true); // 注意書きの表示状態
+
+    const shuffleArray = (array) => {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+    };
 
     // YouTube Iframe API のスクリプトを動的に読み込む
     useEffect(() => {
+        setShuffledVideos(shuffleArray(baseVideos));
+
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -23,16 +32,10 @@ export default function IosFrame() {
         window.onYouTubeIframeAPIReady = () => {
             // eslint-disable-next-line no-undef
             const newPlayer = new YT.Player('player', {
-                height: '360',
-                width: '640',
-                videoId: baseVideos[currentVideoIndex].id,
-                playerVars: {
-                    start: parseInt(baseVideos[currentVideoIndex].start),
-                    end: parseInt(baseVideos[currentVideoIndex].end)
-                },
+                playerVars: {}, // 初期は動画を指定しない
                 events: {
-                    'onStateChange': onPlayerStateChange
-                }
+                    'onStateChange': onPlayerStateChange,
+                },
             });
             setPlayer(newPlayer);
         };
@@ -51,43 +54,54 @@ export default function IosFrame() {
     };
 
     const playNextVideo = () => {
-        const nextIndex = (currentVideoIndex + 1) % baseVideos.length;
+        const nextIndex = (currentVideoIndex + 1) % shuffledVideos.length;
         setCurrentVideoIndex(nextIndex);
+        handleArrowClick();
+        setShowAttention(false);
+        console.log(nextIndex)
+        if (nextIndex === shuffledVideos.length - 1) {
+            setShuffledVideos((prevShuffledVideos) => [
+                ...prevShuffledVideos,
+                ...shuffleArray(baseVideos),
+            ]);
+        }
 
         if (player) {
             player.loadVideoById({
-                videoId: baseVideos[nextIndex].id,
-                startSeconds: parseInt(baseVideos[nextIndex].start),
-                endSeconds: parseInt(baseVideos[nextIndex].end)
+                videoId: shuffledVideos[nextIndex].id,
+                startSeconds: parseInt(shuffledVideos[nextIndex].start),
+                endSeconds: parseInt(shuffledVideos[nextIndex].end)
             });
         }
     };
 
     const playPreviousVideo = () => {
-        const prevIndex = (currentVideoIndex - 1 + baseVideos.length) % baseVideos.length;
-        setCurrentVideoIndex(prevIndex);
+        if (currentVideoIndex > 0) {
+            const prevIndex = (currentVideoIndex - 1 + shuffledVideos.length) % shuffledVideos.length;
+            setCurrentVideoIndex(prevIndex);
 
-        if (player) {
-            player.loadVideoById({
-                videoId: baseVideos[prevIndex].id,
-                startSeconds: parseInt(baseVideos[prevIndex].start),
-                endSeconds: parseInt(baseVideos[prevIndex].end)
-            });
+            if (player) {
+                player.loadVideoById({
+                    videoId: shuffledVideos[prevIndex].id,
+                    startSeconds: parseInt(shuffledVideos[prevIndex].start),
+                    endSeconds: parseInt(shuffledVideos[prevIndex].end),
+                });
+            }
         }
     };
 
     return (
         <div className="iosFrameWrapper">
-            <div className='iosYoutubePlayerWrapper'>
+            <div className={`iosYoutubePlayerWrapper ${showAttention ? 'hide' : ''}`}>
                 <div className="beResponsive">
                     <div className='iosYoutubePlayer' id="player"></div>
                 </div>
                 <div className='youtubeDescription'>
                     <div className='youtubeTitleWrapper'>
-                        <p className="youtubeTitle">{baseVideos[currentVideoIndex].title}</p>
+                        <p className="youtubeTitle">{shuffledVideos[currentVideoIndex]?.title || "dummy"}</p>
                         <div className="youtubeMoreWrapper">
                             <a
-                                href={`https://www.youtube.com/watch?v=${baseVideos[currentVideoIndex].id}`}
+                                href={`https://www.youtube.com/watch?v=${shuffledVideos[currentVideoIndex]?.id}&t=${shuffledVideos[currentVideoIndex]?.end}s || "dummy"}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -98,11 +112,19 @@ export default function IosFrame() {
                     </div>
                 </div>
             </div>
+            <div className={`iosAttentionWrapper ${showAttention ? '' : 'hide'}`}>
+                <img src="/assets/mobileYoutubeImg.webp" alt="" />
+                <div className='mobileYoutubeButtonWrapper'>
+                    <button onClick={playNextVideo} className='mobileYoutubeButton'>
+                        <p className="s">再生開始！</p>
+                    </button>
+                </div>
+            </div>
             <div className="mobileArrowButtonWrapper">
                 <div className="arrowButtonWrapper arrowButtonWrapperLeft">
                     <p className='arrowButtonText'>まえの話</p>
                     <button
-                        className={`arrow-left arrow ${currentVideoIndex === 0 ? 'disabled' : ''}`}
+                        className={`arrow-left arrow ${currentVideoIndex <= 0 ? 'disabled' : ''}`}
                         onClick={playPreviousVideo}
                         disabled={currentVideoIndex === 0}
                     >
@@ -115,9 +137,9 @@ export default function IosFrame() {
                 <div className='arrowButtonWrapper arrowButtonWrapperRight'>
                     <p className='arrowButtonText'>つぎの話</p>
                     <button
-                        className={`arrow-right arrow ${currentVideoIndex === baseVideos.length - 1 ? 'disabled' : ''}`}
+                        className={`arrow-right arrow ${currentVideoIndex === shuffledVideos.length - 1 ? 'disabled' : ''}`}
                         onClick={playNextVideo}
-                        disabled={currentVideoIndex === baseVideos.length - 1}
+                        disabled={currentVideoIndex === shuffledVideos.length - 1}
                     >
                         <p className='mobileArrowButtonText'>つぎの話</p>
                         <img src="/assets/rightArrow.svg" alt="" />

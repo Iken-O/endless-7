@@ -10,6 +10,21 @@
     border: 5px solid #eb6968;
     margin-bottom: 1.5em;
 }
+.iosAttentionWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1.2em;
+}
+.mobileYoutubeButtonWrapper{
+    width: 90%;
+}
+.iosAttentionWrapper img{
+    width: 90%;
+    border: 5px solid #eb6968;
+}
 .iosYoutubeMore {
     width: 65%;
     text-align: left;
@@ -32,4 +47,7 @@
 }
 .disabled svg path{
     fill: #eaeaea;
+}
+.hide{
+    display: none;
 }
