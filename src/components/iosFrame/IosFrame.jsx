@@ -124,7 +124,7 @@ export default function IosFrame({ handleArrowClick }) {
                 <div className="arrowButtonWrapper arrowButtonWrapperLeft">
                     <p className='arrowButtonText'>まえの話</p>
                     <button
-                        className={`arrow-left arrow ${currentVideoIndex <= 0 ? 'disabled' : ''}`}
+                        className={`arrow-left arrow ${currentVideoIndex <= 0 ? 'iosDisabled' : ''}`}
                         onClick={playPreviousVideo}
                         disabled={currentVideoIndex === 0}
                     >
@@ -137,7 +137,7 @@ export default function IosFrame({ handleArrowClick }) {
                 <div className='arrowButtonWrapper arrowButtonWrapperRight'>
                     <p className='arrowButtonText'>つぎの話</p>
                     <button
-                        className={`arrow-right arrow ${currentVideoIndex === shuffledVideos.length - 1 ? 'disabled' : ''}`}
+                        className={`arrow-right arrow ${currentVideoIndex === shuffledVideos.length - 1 ? 'iosDisabled' : ''}`}
                         onClick={playNextVideo}
                         disabled={currentVideoIndex === shuffledVideos.length - 1}
                     >

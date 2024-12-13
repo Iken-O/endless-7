@@ -36,16 +36,16 @@
     top: 0;
     width: 100%;
 }
-.disabled{
+.iosDisabled{
     border: 4px solid #eaeaea;
     box-shadow: 4px 4px 0 0 #c1c1c1;
     cursor: not-allowed;
     color: #c1c1c1;
 }
-.disabled p{
+.iosDisabled p{
     color: #c1c1c1;
 }
-.disabled svg path{
+.iosDisabled svg path{
     fill: #eaeaea;
 }
 .hide{
