@@ -9,7 +9,7 @@ export default function Credit() {
           <section className='creditSection'>
             <h2>このサイトについて</h2>
             <ul className='creditLists'>
-              <li>七瀬すず菜さんの思っちゃった/てかさぁ！した場面をランダムで連続自動再生する非公式サイトです。</li>
+              <li>七瀬すず菜の思っちゃった＆てかさぁ！した場面をエンドレスにランダム再生する非公式サイトです。</li>
               <li>このサイトでは、YouTubeの公式埋め込みプレイヤーを使用しています。再生はYouTube上での視聴回数に反映され、広告が表示される場合、その収益はチャンネルに還元されます。</li>
             </ul>
           </section>
@@ -30,14 +30,14 @@ export default function Credit() {
           <section className='creditSection'>
             <h2>Special Thanks</h2>
             <ul className='creditLists'>
-              <li>リスナーさんの「思っちゃったか」「はい七瀬さん」「てかさぁ！」等のチャットを参考に配信を切り抜かせていただきました。リスナーの皆様に感謝いたします</li>
+              <li>リスナーさんの「思っちゃったか」「はい七瀬さん」「てかさぁ！」等のチャットを参考に配信を切り抜かせていただきました。</li>
             </ul>
           </section>
           <section className='creditSection'>
             <h2>制作</h2>
             <ul className='creditLists withoutDot'>
               <li>愛犬オー（<a href='https://x.com/big_aphrodite' target="_blank" rel="noopener noreferrer">@big_aphrodite</a>）</li>
-              <li>もし何かございましたら、<a href='https://x.com/big_aphrodite' target="_blank" rel="noopener noreferrer">XのDM</a>または<a href='mailto:iken.o.dev@gmail.com'>メール</a>までご連絡ください。</li>
+              <li>不具合等もし何かございましたら、<a href='https://x.com/big_aphrodite' target="_blank" rel="noopener noreferrer">XのDM</a>または<a href='mailto:iken.o.dev@gmail.com'>メール</a>までご連絡ください。</li>
             </ul>
           </section>
         </div>

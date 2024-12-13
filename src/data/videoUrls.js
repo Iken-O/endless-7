@@ -49,6 +49,7 @@ const baseVideos = [
     { id: "kbXACv-m-To", title: "【朝活】おはすず 12月2日（月）【七瀬すず菜/にじさんじ】", start: "5204", end: "5420" },
     { id: "8hG4gSwZWgo", title: "【朝活】おはすず12月6日（金）【七瀬すず菜/にじさんじ】", start: "1767", end: "3670" },
     { id: "e9np4TswDQ0", title: "【朝活】おはすず 12月7日（土）【七瀬すず菜/にじさんじ】", start: "6163", end: "6445" },
+    { id: "znf_4rDZSV0", title: "【朝活】おはすず12月10日（火）【七瀬すず菜/にじさんじ】", start: "1565", end: "2064" },
     // { id: "", title: "", start: "", end: "" },
 ];
 
