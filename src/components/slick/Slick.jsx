@@ -55,7 +55,7 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
                     width: '100%',
                     height: '100%',
                     playerVars: {
-                        autoplay: 0,
+                        autoplay: 1,
                         controls: 1,
                         modestbranding: 1,
                         rel: 0,
@@ -64,14 +64,14 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
                         end: end
                     },
                     events: {
-                        onReady: (event) => {
-                            // 動画をロードし、特定の開始・終了時間を設定
-                            event.target.loadVideoById({
-                                videoId: videoId,
-                                startSeconds: start || 0,
-                                endSeconds: end
-                            });
-                        },
+                        // onReady: (event) => {
+                        //     // 動画をロードし、特定の開始・終了時間を設定
+                        //     event.target.loadVideoById({
+                        //         videoId: videoId,
+                        //         startSeconds: start || 0,
+                        //         endSeconds: end
+                        //     });
+                        // },
                         onStateChange: (event) => {
                             if (event.data === 0) {
                                 console.log('Video ended');

@@ -1,0 +1,16 @@
+.iosFrameWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.iosYoutubePlayerWrapper{
+    background-color: #000;
+    width: 90%;
+    border: 5px solid #eb6968;
+    margin-bottom: 1.5em;
+}
+.iosYoutubeMore {
+    width: 65%;
+    text-align: left;
+}
