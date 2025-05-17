@@ -1,0 +1,7 @@
+[build]
+  command   = "npm run build"
+  publish   = "build"                 # Vite なら dist / CRA なら build
+  functions = "netlify/functions"
+
+[dev]
+  envFiles = [".env.local"]
