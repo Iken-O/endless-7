@@ -1,4 +1,3 @@
-// netlify/functions/get_videos.js
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(process.env.MONGODB_URI);
 const clientPromise = client.connect(); // 使い回し
