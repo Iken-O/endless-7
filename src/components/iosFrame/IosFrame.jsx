@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import "../slick/Slick.css"
 import "./IosFrame.css"
 import '../slick/Slick.css';
-import baseVideos from '../../data/videoUrls';
+// import baseVideos from '../../data/videoUrls';
 
 export default function IosFrame({ handleArrowClick }) {
     const [player, setPlayer] = useState(null);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(-1); // 初期状態は-1（空のフレーム）
+    const [baseVideos, setBaseVideos] = useState([]);
     const [shuffledVideos, setShuffledVideos] = useState([]);
     const [showAttention, setShowAttention] = useState(true); // 注意書きの表示状態
 
@@ -19,8 +20,23 @@ export default function IosFrame({ handleArrowClick }) {
         return shuffledArray;
     };
 
+    useEffect(() => {
+        const fetchVideos = async () => {
+            try {
+                const res = await fetch('/.netlify/functions/get_videos');
+                const data = await res.json();          // [{ videoId, start, end, title }, ...]
+                setBaseVideos(data);
+                setShuffledVideos(shuffleArray(data));
+            } catch (e) {
+                console.error('動画取得失敗', e);
+            }
+        };
+        fetchVideos();
+    }, []);
+
     // YouTube Iframe API のスクリプトを動的に読み込む
     useEffect(() => {
+        if (!baseVideos.length) return;
         setShuffledVideos(shuffleArray(baseVideos));
 
         const tag = document.createElement('script');
@@ -44,7 +60,7 @@ export default function IosFrame({ handleArrowClick }) {
             // クリーンアップ
             delete window.onYouTubeIframeAPIReady;
         };
-    }, []);
+    }, [baseVideos]);
 
     const onPlayerStateChange = (event) => {
         // eslint-disable-next-line no-undef
@@ -58,7 +74,7 @@ export default function IosFrame({ handleArrowClick }) {
         setCurrentVideoIndex(nextIndex);
         handleArrowClick();
         setShowAttention(false);
-        console.log(nextIndex)
+        // console.log(nextIndex)
         if (nextIndex === shuffledVideos.length - 1) {
             setShuffledVideos((prevShuffledVideos) => [
                 ...prevShuffledVideos,
@@ -68,7 +84,7 @@ export default function IosFrame({ handleArrowClick }) {
 
         if (player) {
             player.loadVideoById({
-                videoId: shuffledVideos[nextIndex].id,
+                videoId: shuffledVideos[nextIndex].videoId,
                 startSeconds: parseInt(shuffledVideos[nextIndex].start),
                 endSeconds: parseInt(shuffledVideos[nextIndex].end)
             });
@@ -82,7 +98,7 @@ export default function IosFrame({ handleArrowClick }) {
 
             if (player) {
                 player.loadVideoById({
-                    videoId: shuffledVideos[prevIndex].id,
+                    videoId: shuffledVideos[prevIndex].videoId,
                     startSeconds: parseInt(shuffledVideos[prevIndex].start),
                     endSeconds: parseInt(shuffledVideos[prevIndex].end),
                 });
@@ -101,7 +117,7 @@ export default function IosFrame({ handleArrowClick }) {
                         <p className="youtubeTitle">{shuffledVideos[currentVideoIndex]?.title || "dummy"}</p>
                         <div className="youtubeMoreWrapper">
                             <a
-                                href={`https://www.youtube.com/watch?v=${shuffledVideos[currentVideoIndex]?.id}&t=${shuffledVideos[currentVideoIndex]?.end}s || "dummy"}`}
+                                href={`https://www.youtube.com/watch?v=${shuffledVideos[currentVideoIndex]?.videoId}&t=${shuffledVideos[currentVideoIndex]?.end}s || "dummy"}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

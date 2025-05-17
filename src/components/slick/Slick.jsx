@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../slick/Slick.css';
-import baseVideos from '../../data/videoUrls';
+// import baseVideos from '../../data/videoUrls';
 import { Navigation } from 'swiper/modules';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -74,7 +74,7 @@ const YouTubePlayer = ({ videoId, isVisible, start, end, onVideoEnd, isReady }) 
                         // },
                         onStateChange: (event) => {
                             if (event.data === 0) {
-                                console.log('Video ended');
+                                // console.log('Video ended');
                                 onVideoEnd();
                             }
                         },
@@ -116,12 +116,33 @@ export default function Slick({ handleArrowClick }) {
     const [readySlides, setReadySlides] = useState(new Set([0, 1]))
     const [isAPIReady, setIsAPIReady] = useState(false);
     const [isFirstSlide, setIsFirstSlide] = useState(true);
+    const [baseVideos, setBaseVideos] = useState([]);
+    const [videos, setVideos] = useState([]);
     const swiperRef = useRef(null);
 
     useEffect(() => {
         loadYouTubeAPI().then(() => {
             setIsAPIReady(true);
         });
+    }, []);
+
+    useEffect(() => {
+        // console.log("取得開始")
+        // 2. Netlify Function から取得
+        fetch('/.netlify/functions/get_videos')
+            .then(res => {
+                // console.log("取得完了")
+                if (!res.ok) throw new Error('動画データの取得に失敗');
+                return res.json();
+            })
+            .then(data => {
+                // console.log("梱包完了")
+                // 3. data は [{ videoId, start, end, title }, …]
+                setBaseVideos(data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
     }, []);
 
     // シャッフル関数
@@ -135,12 +156,15 @@ export default function Slick({ handleArrowClick }) {
     };
 
     // 初期状態ではシャッフルした配列を使用し、uniqueKeyを付与
-    const [videos, setVideos] = useState(() =>
-        shuffleArray(baseVideos).map(video => ({
-            ...video,
-            uniqueKey: uuidv4()
-        }))
-    );
+    useEffect(() => {
+        if (baseVideos.length === 0) return;           // まだ来ていない
+        setVideos(
+            shuffleArray(baseVideos).map(v => ({
+                ...v,
+                uniqueKey: uuidv4(),
+            }))
+        );
+    }, [baseVideos]);
 
     const handleSlideChange = (swiper) => {
         const { activeIndex } = swiper;
@@ -170,7 +194,7 @@ export default function Slick({ handleArrowClick }) {
     };
 
     const handleVideoEnd = () => {
-        console.log("videoEnd")
+        // console.log("videoEnd")
         // 動画終了時に次のスライドに移動
         if (swiperRef.current) {
             swiperRef.current.slideNext();
@@ -245,7 +269,7 @@ export default function Slick({ handleArrowClick }) {
                             <div className='youtubeSliderShutter'></div>
                             <div className="beResponsive">
                                 <YouTubePlayer
-                                    videoId={video.id}
+                                    videoId={video.videoId}
                                     isVisible={activeSlides.has(index + 1)}
                                     isReady={readySlides.has(index + 1)}
                                     start={video.start}
@@ -257,7 +281,7 @@ export default function Slick({ handleArrowClick }) {
                                 <div className='youtubeTitleWrapper'>
                                     <p className="youtubeTitle">{video.title}</p>
                                     <div className="youtubeMoreWrapper">
-                                        <a href={`https://www.youtube.com/watch?v=${video.id}&t=${video.end}s`} target="_blank" rel="noopener noreferrer">
+                                        <a href={`https://www.youtube.com/watch?v=${video.videoId}&t=${video.end}s`} target="_blank" rel="noopener noreferrer">
                                             <p className="youtubeMore">続きを聴く</p>
                                             <img className='youtubeMoreImg' src="/assets/more.svg" alt="" />
                                         </a>
