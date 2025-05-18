@@ -20,7 +20,7 @@
     transition: opacity 0.5s linear, visibility 0s 0.5s; /* visibility の遅延 */
 }
 
-.loadingimg {
+.loadingImg {
     width: 300px;
 }
 .loadingText{

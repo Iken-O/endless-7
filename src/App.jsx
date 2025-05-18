@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import "./App.css";
 import Top from './components/top/Top'
 import Button from './components/button/Button';
@@ -10,6 +10,8 @@ import Roading from './components/roading/Roading';
 export default function App() {
   const [startTime, setStartTime] = useState(null);
   const [isTimerStarted, setIsTimerStarted] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
 
   const handleArrowClick = () => {
     if (!isTimerStarted) {
@@ -21,10 +23,10 @@ export default function App() {
     <>
       <div className="frame">
         <div className="polygon">
-          <Roading />
+          <Roading isReady={isReady} />
           <Rellax />
           <Top startTime={startTime} isTimerStarted={isTimerStarted} />
-          <Main handleArrowClick={handleArrowClick}/>
+          <Main handleArrowClick={handleArrowClick} onDataLoaded={() => setIsReady(true)} />
           <Button startTime={startTime} isTimerStarted={isTimerStarted} />
           <Credit />
         </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import './Roading.css';
 
-export default function Roading() {
+export default function Roading({isReady}) {
     const loadingRef = useRef(null);
 
     useEffect(() => {
         const loading = loadingRef.current;
     
-        if (!loading) return;
+        if (!isReady) return;
     
         const handleLoad = () => {
             setTimeout(() => {
@@ -15,21 +15,15 @@ export default function Roading() {
             }, 1000);
         };
     
-        if (document.readyState === 'complete') {
+        if (isReady) {
             handleLoad();
-        } else {
-            window.addEventListener('load', handleLoad);
         }
-    
-        return () => {
-            window.removeEventListener('load', handleLoad);
-        };
-    }, []);
+    }, [isReady]);
     
 
     return (
         <div className='loadingWrapper' ref={loadingRef}>
-            <img className='loadingimg' src="./assets/logo.webp" alt="Loading" />
+            <img className='loadingImg' src="./assets/logo.webp" alt="Loading" />
             <p className="loadingText">Now Loading...</p>
         </div>
     );

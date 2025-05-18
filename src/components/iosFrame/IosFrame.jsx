@@ -4,7 +4,7 @@ import "./IosFrame.css"
 import '../slick/Slick.css';
 // import baseVideos from '../../data/videoUrls';
 
-export default function IosFrame({ handleArrowClick }) {
+export default function IosFrame({ handleArrowClick,onDataLoaded }) {
     const [player, setPlayer] = useState(null);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(-1); // 初期状態は-1（空のフレーム）
     const [baseVideos, setBaseVideos] = useState([]);
@@ -27,6 +27,7 @@ export default function IosFrame({ handleArrowClick }) {
                 const data = await res.json();          // [{ videoId, start, end, title }, ...]
                 setBaseVideos(data);
                 setShuffledVideos(shuffleArray(data));
+                onDataLoaded();
             } catch (e) {
                 console.error('動画取得失敗', e);
             }

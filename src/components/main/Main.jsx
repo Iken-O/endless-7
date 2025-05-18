@@ -4,10 +4,10 @@ import Slick from '../slick/Slick';
 import IosFrame from '../iosFrame/IosFrame';
 import './Main.css';
 
-export default function Main({ handleArrowClick }) {
+export default function Main({ handleArrowClick, onDataLoaded }) {
   return (
     <div className="mainWrapper">
-      {isIOS ? <IosFrame handleArrowClick={handleArrowClick} /> : <Slick handleArrowClick={handleArrowClick} />}
+      {isIOS ? <IosFrame handleArrowClick={handleArrowClick} onDataLoaded={onDataLoaded} /> : <Slick handleArrowClick={handleArrowClick}  onDataLoaded={onDataLoaded} />}
     </div>
   );
 }
