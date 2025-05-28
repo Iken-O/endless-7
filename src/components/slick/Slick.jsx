@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { isMobile } from 'react-device-detect'; // iOS判定用
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -283,7 +284,7 @@ export default function Slick({ handleArrowClick, onDataLoaded }) {
                                     <p className="youtubeTitle">{video.title}</p>
                                     <div className="youtubeMoreWrapper">
                                         <a href={`https://www.youtube.com/watch?v=${video.videoId}&t=${video.end}s`} target="_blank" rel="noopener noreferrer">
-                                            <p className="youtubeMore">続きを聴く</p>
+                                            <p className={`youtubeMore ${isMobile ? 'youtubeMoreMobile' : ''}`}>続きを聴く</p>
                                             <img className='youtubeMoreImg' src="/assets/more.svg" alt="" />
                                         </a>
                                     </div>
