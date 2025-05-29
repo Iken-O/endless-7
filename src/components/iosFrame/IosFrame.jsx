@@ -130,7 +130,7 @@ export default function IosFrame({ handleArrowClick,onDataLoaded }) {
                 </div>
             </div>
             <div className={`iosAttentionWrapper ${showAttention ? '' : 'hide'}`}>
-                <img src="/assets/mobileYoutubeImg.webp" alt="" />
+                <img src="/assets/mobileYoutubeImg2.webp" alt="" />
                 <div className='mobileYoutubeButtonWrapper mobileYoutubeButtonWrapperIOS'>
                     <button onClick={playNextVideo} className='mobileYoutubeButton'>
                         <p className="s">再生開始！</p>

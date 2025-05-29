@@ -222,10 +222,10 @@ export default function Slick({ handleArrowClick, onDataLoaded }) {
                     </div>
                     <button onClick={handleVideoEnd} className='startButton'>視聴を開始！</button>
                 </div>
-                <img className='suzunaImg' src="/assets/suzuna.webp" alt="" />
+                <img className='suzunaImg' src="/assets/suzuna2.webp" alt="" />
             </div>
             <div className='youtubePlayer mobileYoutubePlayer'>
-                <img className='mobileYoutubeImg' src="/assets/mobileYoutubeImg.webp" alt="" />
+                <img className='mobileYoutubeImg' src="/assets/mobileYoutubeImg2.webp" alt="" />
                 <div className='mobileYoutubeButtonWrapper'>
                     <button onClick={handleVideoEnd} className='mobileYoutubeButton'>
                         <p className="s">再生開始！</p>
